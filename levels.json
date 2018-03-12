@@ -1,12 +1,12 @@
 {
     "perms": [
-        {"name": "Unverified User", "role": "@everyone", "level": 0},
-        {"name": "Verified User", "role": "Verified", "level": 1},
-        {"name": "Support", "role": "Support", "level": 2},
-        {"name": "Expert", "role": "Expert", "level": 3},
-        {"name": "Moderator", "role": "Moderator", "level": 4},
-        {"name": "Administrator", "role": "Administrator", "level": 5},
-        {"name": "Developer", "role": "Developer", "level": 6},
-        {"name": "Bot Developer", "ids": ["180506843796209664", "268071134057070592"], "level": 10}
+        {"name": "Unverified User", "role": "@everyone", "level": 10},
+        {"name": "Verified User", "role": "Verified", "level": 10},
+        {"name": "Support", "role": "Support", "level": 0},
+        {"name": "Expert", "role": "Expert", "level": 0},
+        {"name": "Moderator", "role": "Moderator", "level": 0},
+        {"name": "Administrator", "role": "Administrator", "level": 0},
+        {"name": "Developer", "role": "Developer", "level": 0},
+        {"name": "Bot Developer", "ids": ["180506843796209664", "268071134057070592"], "level": 0}
     ]
 }
