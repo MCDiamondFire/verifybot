@@ -15,7 +15,7 @@ module.exports = class iFunnyIsBad extends Base {
         // Ignore if sent in dfchat
         if (message.channel.name === "dfchat") return super.error("You can't use that here!");
         const responses = [
-        "What's a ghost's favorite cereal? Ghost toasties!",
+        "What's a ghost's favorite cereal? Ghost toasties! (end me)",
         ];
 
         // Send a response
