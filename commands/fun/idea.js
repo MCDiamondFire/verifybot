@@ -34,7 +34,9 @@ module.exports = class Meow extends Base {
                 "A board game",
                 "A mob arena game",
                 "A dropper game",
-                "A spleef game"
+                "A spleef game",
+                "A game with DLC",
+                "A simulator"
             ]
         });
         
@@ -76,6 +78,11 @@ module.exports = class Meow extends Base {
                 "where you trigger lagslayer",
                 "where you avoid CPU ussage",
                 "where you break the loop",
+                "where you get free Robux",
+                "where you find treasure",
+                "where you make things",
+                "where you live",
+                "where you code",
             ]
         });
         
@@ -101,6 +108,12 @@ module.exports = class Meow extends Base {
                 "with Ottelino. <3",
                 "with Jeremaster.",
                 "with SnorkelStudios.",
+                "with nobody",
+                "with Marcus_Roman",
+                "without food",
+                "without jumping",
+                "without anything",
+                "without a life",
                 "or you get banned.",
                 "or a tornado takes you to the land of OZ.",
                 "with noone else.",
@@ -112,7 +125,8 @@ module.exports = class Meow extends Base {
                 "to be hated.",
                 "to lose points.",
                 "to be a meme.",
-                "to win free overlord."
+                "to win free overlord.",
+                "to eat pant."
             ]
         });
 
