@@ -1,6 +1,6 @@
 const Base = require("../../base/Command.js");
 
-module.exports = class Hack extends Base {
+module.exports = class Random extends Base {
     constructor(client) {
         super(client, {
             name: "random",
