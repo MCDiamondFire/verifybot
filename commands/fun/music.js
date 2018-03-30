@@ -13,7 +13,7 @@ module.exports = class Music extends Base {
 
     run(message, args, perms) {
         super.respond(
-        ╔══╗ ♫
+        `╔══╗ ♫
 
         ║██║ ♪♪
 
@@ -25,9 +25,6 @@ module.exports = class Music extends Base {
 
 
 
-        Music♩♪♫♬ Volume: ▁ ▂ ▃ ▄ ▅ ▆ █ 100 %
-
-
-        );
+        Music♩♪♫♬ Volume: ▁ ▂ ▃ ▄ ▅ ▆ █ 100 %`);
     }
 };
