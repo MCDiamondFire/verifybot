@@ -2,6 +2,8 @@ const { Collection, Client } = require("discord.js");
 const { readdir } = require("fs");
 const mysql = require("mysql");
 const levels = require("../levels.json");
+const getYouTubeID = require('get-youtube-id');
+const fetchVideoInfo = require('youtube-info');
 
 /**
  * Represents a Discord client
