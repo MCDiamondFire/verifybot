@@ -28,6 +28,7 @@ module.exports = class  {
         reaction._add(user);
 
         if (user.id === this.client.user.id) return;
+        if (!message.content || !message.content.startsWith("**VerifyBot Help** for ")) return;
 
         const icons = new Map()
             .set("ℹ", "information")

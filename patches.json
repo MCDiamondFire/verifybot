@@ -1,5 +1,5 @@
 {
-    "current": "2.1",
+    "current": "2.2",
     "patches": {
         "1.0": {
             "name": "1.0",
@@ -44,6 +44,20 @@
             "removals": [],
             "notes": [],
             "released": "03/13/18"
+        },
+        "2.2": {
+            "name": "2.2",
+            "additions": [
+                "Improved caps filter",
+                "Profanity filter",
+                "Mention spam filter",
+                "!history",
+                "Improved moderation logs",
+                "!cat"
+            ],
+            "removals": [],
+            "notes": [],
+            "released": "03/23/18"
         }
     }
 }

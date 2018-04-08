@@ -1,32 +1,31 @@
-const Base = require("../../base/ModerationCommand.js");
+const Base = require("../../base/ModCommand.js");
 
-module.exports = class Ban extends Base {
+module.exports = class Softban extends Base {
     constructor(client) {
         super(client, {
             name: "softban",
-            description: "Kicks the mentioned user and purges their messages.",
-            usage: "<user> <reason>",
-            category: "administration",
+            description: "Kicks the mentioned user as well as purging their messages.",
+            usage: "<user> [-s] <reason>",
+            category: "administrative",
             permLevel: 4
-        }, {
-            actionName: "softban",
-            color: 0xFF5500
         });
     }
 
     async run(message) {
+        // Build the moderation data
+        const data = await super.build({
+            message,
+            name: "softban",
+            color: 0xFF1600
+        });
+
         try {
-            await super.setData(message);
-            const valid = super.check();
-            if (!valid) return;
-
-            await super.notify();
-            await this.target.ban({ days: 7, reason: this.reason ? `[${this.executor.user.tag} (softban)] ${this.reason}` : `Softbanned by ${this.executor.user.tag}` });
-            await message.guild.members.unban(this.target.id, { reason: "softban unban" });
-
-            super.send();
+            // Post the moderation log
+            super.post(data);
+            // Kick the target user
+            data.target.ban({ reason: `(softban | ${message.member.displayName}) ${data.reason}`, days: 7 }).then(() => data.target.unban({ reason: "Softban unban" }));
         } catch (e) {
-            super.error("An unknown error occured whilst attempting to perform this action.");
+            return super.error("An error occured while attempting to kick this user.");
         }
     }
 };

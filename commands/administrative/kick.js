@@ -1,32 +1,31 @@
-const Base = require("../../base/ModerationCommand.js");
+const Base = require("../../base/ModCommand.js");
 
-module.exports = class Ban extends Base {
+module.exports = class Kick extends Base {
     constructor(client) {
         super(client, {
             name: "kick",
             description: "Kicks the mentioned user.",
-            usage: "<user> <reason>",
+            usage: "<user> [-s] <reason>",
             category: "administrative",
             permLevel: 4
-        }, {
-            actionName: "kick",
-            color: 0xFFAA00
         });
     }
 
     async run(message) {
+        // Build the moderation data
+        const data = await super.build({
+            message,
+            name: "kick",
+            color: 0xFF6400
+        });
+
         try {
-            await super.setData(message);
-            const valid = super.check();
-            if (!valid) return;
-
-            await super.notify();
-            await this.target.kick({ reason: this.reason ? `[${this.executor.user.tag}] ${this.reason}` : `Banned by ${this.executor.user.tag}` });
-
-            super.send();
+            // Post the moderation log
+            super.post(data);
+            // Kick the target user
+            data.target.kick({ reason: `(${message.member.displayName}) ${data.reason}` });
         } catch (e) {
-            super.error("An unknown error occured whilst attempting to perform this action.");
-            console.log(e);
+            return super.error("An error occured while attempting to kick this user.");
         }
     }
 };

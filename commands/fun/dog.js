@@ -6,7 +6,7 @@ module.exports = class Dog extends Base {
         super(client, {
             name: "dog",
             description: "Shows a random dog.",
-            usage: "<dog>",
+            usage: "",
             category: "fun",
             permLevel: 0,
             cooldown: 60000

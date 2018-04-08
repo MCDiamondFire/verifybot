@@ -1,8 +1,6 @@
 const { inspect } = require("util");
 const levels = require("../levels.json");
 
-const recentMessages = new Map();
-
 module.exports = class {
     constructor(client) {
         this.client = client;
@@ -37,44 +35,14 @@ module.exports = class {
         // Calculate permissions
         const userPerms = await this.client.permLevel(message.author.id);
 
-        // Fetch recent messages
-        let recent = recentMessages.get(message.author.id) || [];
-        // If user has recent messages
-        if (recent[0]) {
-            // If the content doesn't match their message
-            if (recent[0] !== message.content.toLowerCase()) {
-                // Remove their data
-                recentMessages.delete(message.author.id);
-                recent = [];
-            } else {
-                // Add their content to their recent messages
-                recent.push(message.content.toLowerCase());
-                recentMessages.set(message.author.id, recent);
-            }
-        // If no recent messages, set them to an array with the message content
-        } else recentMessages.set(message.author.id, [message.content.toLowerCase()]);
+        // If user is not admin...
+        if (userPerms.level < 5) {
+            // Check if automod was triggered
+            const triggered = message.checkCaps() || message.checkProfanity() || message.checkMentionSpam();
+            // Wait for checks to be processed
+            await triggered;
 
-        // If user has more than 4 identical messages...
-        if (recent.length > 4) {
-            // Fetch 10 messages
-            const messages = await message.channel.messages.fetch({ limit: 10 });
-            // Find all messages with the same content
-            const filtered = messages.filter(async m => {
-                const permlevel = await this.client.permLevel(m.author.id);
-
-                return m.content.toLowerCase().includes(recent[0]) && permlevel < 2;
-            });
-
-            // Delete the filtered messages
-            message.channel.bulkDelete(filtered, true).then(() => message.channel.send(`${message.author} | ❌ | Please stop spamming. Your messages have been removed.`)).catch(() => null).then(m => m.delete({ timeout: 10000 }));
-        }
-
-        // Get the amount of uppercase letters
-        const uppercase = message.content.split("").filter(c => ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"].includes(c)).length;
-
-        if (message.content.length > 5 && message.content.length - uppercase < 5) {
-            message.delete().catch(() => null);
-            message.channel.send(`${message.author} | ❌ | You are using too many uppercase letters. Please limit it to around 5.`).then(m => m.delete({ timeout: 10000 }));
+            if (triggered) return message.delete();
         }
         
         // Verify that message is a command

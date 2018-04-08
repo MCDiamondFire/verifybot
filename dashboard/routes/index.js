@@ -242,15 +242,16 @@ router.get("/confirm", checkAuth, async (req, res) => {
     // If not channel, return
     if (!channel) return;
 
-    // Create an embed and send it
-    channel.buildEmbed()
-        .setColor("GREEN")
+    // Create an embed
+    const embed = channel.buildEmbed()
+        .setColor(0x33FF64)
         .setAuthor(data.player_name, user.avatarURL({ size: 128, format: "png" }))
-        .setDescription(`${req.user.username} has verified their account as ${data.player_name}.`)
-        .setFooter("VerifyBot by RedstoneDaedalus")
-        .send();
+        .setDescription(`${req.user.username} has verified their account as ${data.player_name}.`);
 
-    console.log(`${req.user.username} has verified their Discorda ccount as ${data.player_name}.`);
+    // Send the embed
+    embed.send();
+
+    console.log(`${req.user.username} has verified their Discord account as ${data.player_name}.`);
 });
 
 // Export the router

@@ -5,7 +5,7 @@ module.exports = class {
         this.client = client;
     }
 
-    run(oldMessage, newMessage) {
+    async run(oldMessage, newMessage) {
         // If message was not sent the guild, return
         if (!newMessage.guild || newMessage.guild.id !== config.guild) return;
         // Fetch logs channel
@@ -27,6 +27,19 @@ module.exports = class {
 
         // If message was sent in a channel that mods can't view, ignore it
         if (!newMessage.guild.roles.find("name", "Moderator").permissionsIn(newMessage.channel).has("VIEW_CHANNEL")) return;
+
+        // Calculate permissions
+        const userPerms = await this.client.permLevel(newMessage.author.id);
+
+        // If user is not admin and action is edit...
+        if (userPerms.level < 5 && action.action === "Message Edited") {
+            // Check if automod was triggered
+            const triggered = newMessage.checkCaps() || newMessage.checkProfanity() || newMessage.checkMentionSpam();
+            // Wait for checks to be processed
+            await triggered;
+
+            if (triggered) return newMessage.delete();
+        }
 
         // Create an embed
         const embed = logs.buildEmbed()

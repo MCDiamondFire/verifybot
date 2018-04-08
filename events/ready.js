@@ -85,15 +85,15 @@ module.exports = class {
         }, 30000);
 
         // Fetch 12:00 PM
-        const dt = new Date();
-        const tomorrowNoon = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() + 1, 12, 0, 0);
+        // const dt = new Date();
+        // const tomorrowNoon = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate() + 1, 12, 0, 0);
 
         // Fetch notify function
-        const notify = require("../methods/restricted/plotNotify");
+        // const notify = require("../methods/restricted/plotNotify");
 
-        setTimeout(() => {
-            notify(this.client);
-            setInterval(() => notify(this.client), 8.64e+7);
-        }, new Date() - tomorrowNoon);
+        // setTimeout(() => {
+        //    notify(this.client);
+        //    setInterval(() => notify(this.client), 8.64e+7);
+        // }, new Date() - tomorrowNoon);
     }
 };

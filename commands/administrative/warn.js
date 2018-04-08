@@ -1,30 +1,29 @@
-const Base = require("../../base/ModerationCommand.js");
+const Base = require("../../base/ModCommand.js");
 
-module.exports = class Ban extends Base {
+module.exports = class Warn extends Base {
     constructor(client) {
         super(client, {
             name: "warn",
             description: "Warns the mentioned user.",
-            usage: "<user> <reason>",
+            usage: "<user> [-s] <reason>",
             category: "administrative",
             permLevel: 4
-        }, {
-            actionName: "warn",
-            color: 0xFFFF00
         });
     }
 
     async run(message) {
+        // Build the moderation data
+        const data = await super.build({
+            message,
+            name: "warn",
+            color: 0xFFFF00
+        });
+
         try {
-            await super.setData(message);
-            const valid = super.check();
-            if (!valid) return;
-
-            await super.notify();
-
-            super.send();
+            // Post the moderation log
+            super.post(data);
         } catch (e) {
-            super.error("An unknown error occured whilst attempting to perform this action.");
+            return super.error("An error occured while attempting to warn this user.");
         }
     }
 };

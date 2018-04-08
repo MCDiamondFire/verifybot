@@ -1,18 +1,18 @@
 @RedstoneDaedalus
 
-Fixes/Changes:
+## Fixes/Changes:
 1.
 2.
 3.
 ...
 
-Detailed Descriptions:
+## Detailed Descriptions:
 1.
 2.
 3.
 ...
 
-Reasoning For Addition:
+## Reasoning For Addition:
 1.
 2.
 3.
