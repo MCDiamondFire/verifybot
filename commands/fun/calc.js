@@ -29,7 +29,7 @@ module.exports = class Calc extends Base {
         const two = parseInt(args[2]);
         
         if (isNaN(one)) return super.error("Invalid number.");
-        if (["add", "multiply", "divide", "exponent"].includes(operation) && isNaN(two)) return super.error("This operation requires a second parameter.");
+        if (["add", "multiply", "divide", "exponent", "sqrt"].includes(operation) && isNaN(two)) return super.error("This operation requires a second parameter.");
         
         // Extract properties from math
         const { pow, sqrt } = Math;
@@ -40,12 +40,14 @@ module.exports = class Calc extends Base {
         else if (operation === "subtract") ans = one - two;
         else if (operation === "multiply") ans = one * two;
         else if (operation === "divide") {
-            if (two === 0) return super.error("Cannot divide by 0.");
+            if (two === 0) return super.error("Cannot devide by 0.");
             ans = one / two;
         }
         else if (operation === "exponent") ans = pow(one, two);
-        else if (operation === "sqrt") ans = sqrt(one, two || 2);
+        else if (operation === "sqrt") ans = sqrt(one, two);
         else if (operation === "factorial") ans = factorial(one);
+        else if (!operation) return super.error("You need to specify an operation!");
+        else return super.error("Invalid operation!");
         
         super.respond(`The answer is \`${ans}\`.`);
     }
