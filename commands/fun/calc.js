@@ -46,6 +46,8 @@ module.exports = class Calc extends Base {
         else if (operation === "exponent") ans = pow(one, two);
         else if (operation === "sqrt") ans = sqrt(one, two || 2);
         else if (operation === "factorial") ans = factorial(one);
+        else if (!operation) return super.error("You need to specify an operation!");
+        else return super.error("Invalid operation!");
         
         super.respond(`The answer is \`${ans}\`.`);
     }
