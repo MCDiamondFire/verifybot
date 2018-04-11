@@ -60,7 +60,7 @@ module.exports = class {
                 this.client.user.setPresence({
                     activity: {
                         name: `with ${list.reduce((out, data) => data.players + out, 0)} players`,
-                        type: 0
+                        type: 3
                     },
                     status: "online"
                 });
