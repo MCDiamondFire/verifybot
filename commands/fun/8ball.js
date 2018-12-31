@@ -28,7 +28,15 @@ module.exports = class EightBall extends Base {
             "Eeh, no."
         ];
 
-        // Send a response
-        message.channel.send(`**__${message.member.displayName}__ asks: __${args.join(" ")}__**\n${responses[Math.floor(Math.random() * responses.length)]}`);
+        
+        if(!message.content.includes("@")) { //Checks if it pings someone.
+            message.channel.send(`**__${message.member.displayName}__ asks: __${args.join(" ")}__**\n${responses[Math.floor(Math.random() * responses.length)]}`);
+            // Send a response
+        }else{
+            message.channel.send('You cant ping someone using the 8ball command!').then(msg => {
+            msg.delete(5000)
+          })
+        }    
+        
     }
 };
