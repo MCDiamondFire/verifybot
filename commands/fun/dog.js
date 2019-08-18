@@ -23,7 +23,7 @@ module.exports = class Dog extends Base {
             title: "Dog",
             color: 0xFF6464,
             image: { url: this.cache.shift() },
-            footer: { text: "Use !upload <attached file or URL> to submit a cat image." }
+            footer: { text: "Use !upload <attached file or URL> to submit a dog image." }
         } });
         // Refile Cache
         this.fillCache(1);
