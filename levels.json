@@ -3,7 +3,7 @@
         {"name": "Unverified User", "role": "@everyone", "level": 0},
         {"name": "Verified User", "role": "Verified", "level": 1},
         {"name": "Support", "role": "Support", "level": 2},
-        {"name": "Expert", "role": "Food Expert", "level": 3},
+        {"name": "Expert", "role": "Expert", "level": 3},
         {"name": "Moderator", "role": "Moderation", "level": 4},
         {"name": "Administrator", "role": "Administrator", "level": 5},
         {"name": "Developer", "role": "Developer", "level": 6},
